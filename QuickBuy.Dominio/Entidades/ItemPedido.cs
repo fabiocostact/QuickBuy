@@ -1,6 +1,6 @@
 ﻿namespace QuickBuy.Dominio.Entidades
 {
-    class ItemPedido : Entidade
+    public class ItemPedido : Entidade
     {
         public int Id { get; set; }
         public int ProdutoId { get; set; }
@@ -8,7 +8,10 @@
 
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            if (ProdutoId == 0)
+                AdicionaCritica("Não foi identificado o produto.");
+            if (Quantidade == 0)
+                AdicionaCritica("Quantidade não foi informado.");
         }
     }
 }

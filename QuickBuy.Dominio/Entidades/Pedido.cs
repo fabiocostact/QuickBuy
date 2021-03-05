@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace QuickBuy.Dominio.Entidades
 {
-    class Pedido : Entidade
+    public class Pedido : Entidade
     {
         public int Id { get; set; }
         public DateTime DataPedido { get; set; }
@@ -35,6 +35,8 @@ namespace QuickBuy.Dominio.Entidades
                 AdicionaCritica("Itens de pedido não pode ficar vazio.");
             if(string.IsNullOrEmpty(CEP))
                 AdicionaCritica("CEP não pode ser vazio.");
+            if (FormaPagamentoId == 0)
+                AdicionaCritica("Não foi informado a forma de pagamento");
         }   
     }
 }
