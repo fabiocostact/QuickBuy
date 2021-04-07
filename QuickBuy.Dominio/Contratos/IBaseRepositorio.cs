@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QuickBuy.Dominio.Contratos
 {
@@ -8,8 +9,10 @@ namespace QuickBuy.Dominio.Contratos
 
         TEntity ObterPorId(int id);
 
-        IENumerable<TEntity> ObterTodos();
+        IEnumerable<TEntity> ObterTodos();
+
         void Atualizar(TEntity entity);
+
         void Remover(TEntity entity);
     }
 }

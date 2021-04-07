@@ -2,7 +2,7 @@
 
 namespace QuickBuy.Dominio.ObjetoDeValor
 {
-    class FormaPagamento
+    public class FormaPagamento
     {
         public int Id { get; set; }
         public string Nome { get; set; }
