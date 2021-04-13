@@ -1,17 +1,49 @@
-import { Component } from '@angular/core';
+import { ProdutoServico } from './../servicos/produto/produto.servico';
+import { Component, OnInit } from '@angular/core';
+import { Produto } from './produto.model';
 
 @Component({
     selector: "app-produto",
-    template: "<html><body>{{obterNome()}}</body></html>"
+    templateUrl: "./produto.component.html",
+    styleUrls: ["./produto.component.css"]
 
 })
 
-export class ProdutoComponent {
+export class ProdutoComponent implements OnInit {
 
-    public nome: string;
-    public liberadoParaVenda: boolean;
+    public produto: Produto;
+    public arquivoSelecionado: File;
 
-    public obterNome(): string {
-        return "Samsung";
+    constructor(private ProdutoServico: ProdutoServico) {
+
+    }
+
+    ngOnInit(): void {
+        //throw new Error('Method not implemented.');
+
+    }
+
+    public cadastrar() {
+        this.ProdutoServico.cadastrar(this.produto).subscribe(
+            data => {
+
+            },
+            erro => {
+                console.log(erro.error);
+            }
+        );
+    }
+
+    public inputChange(files: FileList) {
+        this.arquivoSelecionado = files.item(0);
+
+        this.ProdutoServico.enviarArquivo(this.arquivoSelecionado).subscribe(
+            data => {
+                this.produto.nomeArquivo = data;
+            },
+            erro => {
+                console.log(erro.error);
+            }
+        );
     }
 }
